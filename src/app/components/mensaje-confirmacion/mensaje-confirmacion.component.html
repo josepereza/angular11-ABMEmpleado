@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+  <p>Seguro que que desea borrrar?</p>
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick('aceptar')">Yes Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>No</button>
+</div>

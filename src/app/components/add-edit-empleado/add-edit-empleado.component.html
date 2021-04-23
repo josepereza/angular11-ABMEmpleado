@@ -1,0 +1,73 @@
+
+<pre>{{myForm.value | json}}</pre>
+<mat-grid-list #grid [cols]="cols" rowHeight="500px" gutterSize="10px">
+    <mat-grid-tile>
+       <div class="container">
+        <form [formGroup]="myForm"> 
+
+            <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Nombre Completo</mat-label>
+                  <input matInput placeholder="Placeholder" formControlName="nombreCompleto" >
+                  <mat-icon matSuffix>person</mat-icon>
+                  <mat-hint>Introduce</mat-hint>
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="standard">
+                  <mat-label>Telefono</mat-label>
+                  <input type=number matInput placeholder="Placeholder" formControlName="telefono">
+                  <mat-icon matSuffix>phone</mat-icon>
+                  <mat-hint>Introduce</mat-hint>
+                </mat-form-field>
+              </p>
+              
+              <p>
+                <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input type="email" matInput placeholder="Placeholder" formControlName="correo">
+                  <mat-icon matSuffix>mail</mat-icon>
+                  <mat-hint>Hint</mat-hint>
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker"  formControlName="fechaIngreso">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+              </p>
+            
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Estado Civil</mat-label>
+                    <mat-select formControlName="estadoCivil">
+                      <mat-option *ngFor="let item of estadosCiviles" [value]="item" >
+                        {{item}}
+                      </mat-option>
+                      
+                    </mat-select>
+                  </mat-form-field>
+            </p>
+            <p>
+                <mat-radio-group aria-label="Select an option"  formControlName="sexo">
+                    <mat-radio-button value="Masculino">Masculino</mat-radio-button>
+                    <mat-radio-button value="Femenino">Femenino</mat-radio-button>
+                  </mat-radio-group>
+                  
+            </p>
+           <p>
+            <button (click)="guardar()" mat-raised-button  color="primary">Accent</button>
+            <button [style.marginLeft.px]=12  mat-raised-button  color="warn">Cancelar</button>
+            <a class="button" routerLink="/">Listado</a>
+           </p>
+        </form>
+       </div>
+             
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <img src="../../../assets/imagenes/cabinet-2027625.svg" style="width:60%" alt="">
+    </mat-grid-tile>
+    
+  </mat-grid-list>
