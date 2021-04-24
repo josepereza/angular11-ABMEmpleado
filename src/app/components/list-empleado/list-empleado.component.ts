@@ -58,7 +58,7 @@ export class ListEmpleadoComponent implements AfterViewInit {
   }
   cargarEmpleado(){
  this.listEmpleados=this.empleadoService.getEmpleados()
- this.dataSource = new MatTableDataSource(this.listEmpleados);
+ this.dataSource.data = this.listEmpleados;
  console.log({length:this.length,pagesize:this.pageSize,pageindex:this.pageIndex})
  this.router.navigate(['/'])
 
