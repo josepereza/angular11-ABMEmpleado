@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { Empleado } from 'src/app/models/empleado';
+import * as moment from 'moment';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { Empleado } from 'src/app/models/empleado';
 export class AddEditEmpleadoComponent implements OnInit {
  myForm:FormGroup;
   cols : number;
+  fechaIngreso:moment.Moment;
   estadosCiviles:any[]=['Soltero','Casado','Divorciado']
   gridByBreakpoint = {
     xl: 2,
@@ -62,17 +64,17 @@ this.myForm=this.fb.group({
   ngOnInit(): void {
   }
 guardar(){
-  /* const empleado: Empleado = {
+  const empleado: Empleado = {
     nombreCompleto: this.myForm.get('nombreCompleto').value,
     correo: this.myForm.get('correo').value,
-    fechaIngreso: this.myForm.get('fechaIngreso').value,
+    fechaIngreso: this.myForm.get('fechaIngreso').value.toLocaleString(),
     telefono: this.myForm.get('telefono').value,
     estadoCivil: this.myForm.get('estadoCivil').value,
     sexo: this.myForm.get('sexo').value,
-  }; */
+  };
 
   console.log(this.myForm.value)
-  console.log('ese es la fecha ',this.myForm.get('fechaIngreso').value)
-  this.empleadoService.saveEmpleado(this.myForm.value)
+  console.log('ese es la fecha ',this.myForm.get('fechaIngreso').value.toLocaleString())
+  this.empleadoService.saveEmpleado(empleado)
 }
 }

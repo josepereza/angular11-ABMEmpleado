@@ -2,13 +2,14 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 import {ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { Empleado } from 'src/app/models/empleado';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MensajeConfirmacionComponent } from '../mensaje-confirmacion/mensaje-confirmacion.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 
 export interface PeriodicElement {
@@ -42,7 +43,7 @@ export class ListEmpleadoComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-  constructor(private _snackBar: MatSnackBar, private empleadoService:EmpleadoService, public dialog: MatDialog ) { }
+  constructor(private router:Router, private _snackBar: MatSnackBar, private empleadoService:EmpleadoService, public dialog: MatDialog ) { }
 
   
 
@@ -58,8 +59,9 @@ export class ListEmpleadoComponent implements AfterViewInit {
   cargarEmpleado(){
  this.listEmpleados=this.empleadoService.getEmpleados()
  this.dataSource = new MatTableDataSource(this.listEmpleados);
+ console.log({length:this.length,pagesize:this.pageSize,pageindex:this.pageIndex})
+ this.router.navigate(['/'])
 
- 
   }
   borrar(i){
     const dialogRef = this.dialog.open(MensajeConfirmacionComponent , {
@@ -72,12 +74,22 @@ export class ListEmpleadoComponent implements AfterViewInit {
       if (result==="aceptar"){
         
         console.log('resultado en list-compon ' , result)
-    this.empleadoService.delEmpleado(i)
+    this.empleadoService.delEmpleado(i+(this.pageIndex*this.pageSize))
     this._snackBar.open("Registro Borrado",'' ,{duration:2000});
-    this.cargarEmpleado();
+    this.pageIndex=0;
+   this.cargarEmpleado();
       }else return
       //this.animal = result;
     });
     
+  }
+  length = 500;
+  pageSize = 5;
+  pageIndex = 0;
+  handlePageEvent(event: PageEvent) {
+    this.length = event.length;
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+    console.log({length:this.length,pagesize:this.pageSize,pageindex:this.pageIndex})
   }
 }

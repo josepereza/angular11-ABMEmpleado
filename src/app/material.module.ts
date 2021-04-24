@@ -14,19 +14,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MAT_DATE_FORMATS } from '@angular/material/core';
-const MY_FORMATS = {
-  parse: {
-    dateInput: 'DD MMMM YYYY',
-  },
-  display: {
-    dateInput: 'DD MMMM YYYY',
-    monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
+import {MatMomentDateModule } from '@angular/material-moment-adapter';
+
 
 
 
@@ -35,9 +24,7 @@ const MY_FORMATS = {
   imports: [
     CommonModule
   ],
-  providers: [
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-  ],
+ 
   exports:[
     MatToolbarModule,
     MatTableModule,
