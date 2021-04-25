@@ -1,5 +1,5 @@
 ## DATEPICKER PARA EUROPA
-* Para agregar el datepicker para Europa tenemos que agregar  :
+* Para agregar un datepicker para Europa tenemos que insertar en el app.module.ts  :
 ```
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 ```
