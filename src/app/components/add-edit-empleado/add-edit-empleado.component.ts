@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { Empleado } from 'src/app/models/empleado';
 import * as moment from 'moment';
@@ -26,9 +26,9 @@ export class AddEditEmpleadoComponent implements OnInit {
 
   constructor(private fb:FormBuilder,  private breakpointObserver: BreakpointObserver,private empleadoService:EmpleadoService) {
 this.myForm=this.fb.group({
-  nombreCompleto:[''],
-  telefono:[''],
-  correo:[''],
+  nombreCompleto:['' ,[Validators.required, Validators.minLength(3)]],
+  telefono:['' ,[Validators.required, Validators.minLength(3)]],
+  correo:['', [Validators.email]],
   fechaIngreso:[''],
   sexo:[''],
   estadoCivil:['']
