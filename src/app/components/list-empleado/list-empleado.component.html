@@ -56,7 +56,7 @@
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef> Acciones</th>
         <td mat-cell *matCellDef="let element; let i=index">
-          <a class="pointer"> <mat-icon color="primary">edit</mat-icon></a>
+          <a class="pointer" routerLink="edit/{{i+(pageIndex*pageSize)}}"> <mat-icon color="primary" >edit</mat-icon></a>
           <a (click)="borrar(i)" class="pointer"> <mat-icon color="warn" >delete</mat-icon>
           </a>
            </td>

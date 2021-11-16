@@ -30,4 +30,16 @@ listEmpleado:Empleado[]=[
     this.listEmpleado.push(empleado)
     console.log(this.listEmpleado)
   }
+  buscarEmpleado(index:number):Empleado{
+    return this.listEmpleado[index];
+  }
+  editarEmpleado(empleado:Empleado, index:number):void{
+    this.listEmpleado[index].nombreCompleto = empleado.nombreCompleto;
+    this.listEmpleado[index].correo = empleado.correo;
+    this.listEmpleado[index].telefono = empleado.telefono;
+    this.listEmpleado[index].sexo = empleado.sexo;
+    this.listEmpleado[index].fechaIngreso = empleado.fechaIngreso;
+    this.listEmpleado[index].estadoCivil = empleado.estadoCivil;
+}
+
 }
